@@ -6,7 +6,9 @@ Foram feitas checagens não destrutivas em Tyr e Thor para validar as premissas 
 
 `ssh tyr` respondeu como host `tyr`, macOS/Darwin, com Docker disponível. O Docker mostrou containers PostgreSQL em execução, incluindo `ginnungagap-postgres` com imagem `postgres:16` e porta `5432` publicada, além de outros serviços de pesquisa. Credenciais e variáveis `POSTGRES*` não foram lidas por segurança.
 
-Para continuar até a aplicação real da migração, defina explicitamente `EITRI_DATABASE_URL` com uma URL PostgreSQL válida para o metastore Eitri e execute:
+Em 2026-06-27, o banco `eitri` e a role dedicada `eitri` foram criados no container `ginnungagap-postgres`, a migração `0001_create_eitri_metastore` foi aplicada e o seed inicial foi persistido. A evidência operacional sem segredos está em `docs/evidence/tyr-metastore-bootstrap-2026-06-27.md`.
+
+Para validar ou reaplicar em ambiente novo, defina explicitamente `EITRI_DATABASE_URL` com uma URL PostgreSQL válida para o metastore Eitri e execute:
 
 ```bash
 eitri metastore check-url

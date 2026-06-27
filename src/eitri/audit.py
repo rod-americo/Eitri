@@ -77,12 +77,11 @@ def audit_bootstrap(root: str | Path = ".") -> AuditReport:
             ),
             root=base,
         ),
-        AuditRequirement(
+        _require(
             key="tyr_applied_migration",
             description="Migração aplicada no PostgreSQL real em Tyr.",
-            evidence=("EITRI_DATABASE_URL explícita", "alembic upgrade head em Tyr/PostgreSQL"),
-            status="external_pending",
-            note="Não aplicado sem URL explícita do metastore; não se lê credenciais do container.",
+            evidence=("docs/evidence/tyr-metastore-bootstrap-2026-06-27.md",),
+            root=base,
         ),
         _require(
             key="metrics_and_telemetry",
