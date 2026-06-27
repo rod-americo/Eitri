@@ -73,6 +73,6 @@ plugins:
 
 control_plane:
   host: 127.0.0.1
-  port: 8010
+  port: 8081
   polling_seconds: 2
   allow_public_bind: false

@@ -59,6 +59,8 @@ Executar o Control Plane:
 eitri web --config configs/eitri.example.yaml
 ```
 
+Por padrão, o serviço escuta em `127.0.0.1:8081` para evitar conflito com serviços locais que usem `8080`.
+
 Executar a TUI:
 
 ```bash

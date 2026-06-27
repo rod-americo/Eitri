@@ -80,7 +80,7 @@ class RegistryConfig:
 @dataclass(frozen=True)
 class ControlPlaneConfig:
     host: str = "127.0.0.1"
-    port: int = 8010
+    port: int = 8081
     polling_seconds: int = 2
     allow_public_bind: bool = False
 
@@ -187,7 +187,7 @@ def parse_config(raw: dict[str, Any]) -> EitriConfig:
         ),
         control_plane=ControlPlaneConfig(
             host=str(control_plane_raw.get("host", "127.0.0.1")),
-            port=int(control_plane_raw.get("port", 8010)),
+            port=int(control_plane_raw.get("port", 8081)),
             polling_seconds=int(control_plane_raw.get("polling_seconds", 2)),
             allow_public_bind=bool(control_plane_raw.get("allow_public_bind", False)),
         ),
