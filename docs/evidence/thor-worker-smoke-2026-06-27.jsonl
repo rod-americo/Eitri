@@ -1,0 +1,1 @@
+{"event_id":"6eb53594-1e75-4dae-bc7a-f3866eba2426","event_type":"worker.job.completed","observed_at":"2026-06-27T22:31:14.776273+00:00","payload":{"checkpoint":"epoch-003.ckpt","dry_run":false,"epoch":3,"job_id":"job-dry-run-001","loss":0.2308,"progress":100,"status":"completed","step":300,"validation_loss":0.2808,"worker_name":"thor-gpu"},"run_id":"run-dry-run-001"}

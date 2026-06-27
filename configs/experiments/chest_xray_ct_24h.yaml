@@ -1,0 +1,42 @@
+experiment:
+  name: chest-xray-ct-24h-structured
+  owner_user: rodrigo
+  task: paired_imaging_structured_prediction
+  domain: radiology
+  objective: Predizer saída estruturada a partir de radiografia de tórax em leito pareada com tomografia computadorizada realizada até 24 horas depois.
+  output_mode: structured
+  generate_text: false
+
+dataset:
+  name: bedside-chest-xray-ct-24h
+  version: "0.1.0"
+  modality:
+    source: CR
+    target: CT
+  pairing:
+    max_delta_hours: 24
+    patient_level: true
+  split:
+    strategy: patient
+    train: 0.70
+    validation: 0.15
+    test: 0.15
+  labels:
+    format: structured
+    require_integrity_check: true
+
+metrics:
+  primary: auroc
+  secondary:
+    - auprc
+    - f1
+    - recall
+    - precision
+    - calibration_error
+
+guardrails:
+  require_dataset_hash: true
+  require_patient_split: true
+  require_no_patient_leakage: true
+  require_minimum_class_distribution: true
+  require_structured_output: true

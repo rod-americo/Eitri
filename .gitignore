@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Local runtime
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+
+# Eitri non-Git state
+data/
+datasets/
+artifacts/
+checkpoints/
+logs/
+cache/
+.eitri/
+*.sqlite
+*.db
+
+# Large ML outputs
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+*.onnx
+*.dicom
+*.dcm
+*.nii
+*.nii.gz
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/

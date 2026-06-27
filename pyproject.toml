@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "eitri"
+version = "0.1.0"
+description = "Reproducible and observable ML experiment platform foundation."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Apache-2.0 AND CC-BY-4.0" }
+authors = [{ name = "Rodrigo" }]
+dependencies = [
+  "alembic>=1.13",
+  "fastapi>=0.115",
+  "jinja2>=3.1",
+  "psutil>=6.0",
+  "psycopg[binary]>=3.2",
+  "pydantic>=2.8",
+  "pyyaml>=6.0",
+  "rich>=13.7",
+  "sqlalchemy>=2.0",
+  "textual>=0.79",
+  "typer>=0.12",
+  "uvicorn>=0.30",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8.2",
+  "ruff>=0.6",
+]
+
+[project.scripts]
+eitri = "eitri.cli:app"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+eitri = ["templates/*.html"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]

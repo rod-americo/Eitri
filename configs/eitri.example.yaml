@@ -1,0 +1,78 @@
+project:
+  name: Eitri
+  domain: radiology
+  default_dry_run: true
+  owner_user: rodrigo
+
+hosts:
+  odin:
+    role: local_development
+    responsibilities:
+      - code
+      - tests
+      - dry_runs
+      - tui
+      - control_plane
+      - light_experiments
+  thor:
+    role: gpu_execution
+    ssh_alias: thor
+    responsibilities:
+      - training
+      - fine_tuning
+      - benchmarks
+      - heavy_inference
+      - checkpoints
+      - long_jobs
+  tyr:
+    role: metastore
+    ssh_alias: tyr
+    database_url_env: EITRI_DATABASE_URL
+
+storage:
+  datasets_root: data/datasets
+  artifacts_root: artifacts
+  checkpoints_root: checkpoints
+  logs_root: logs
+  cache_root: cache
+
+metastore:
+  dialect: postgresql
+  store_heavy_artifacts: false
+  forbidden_payloads:
+    - images
+    - dicom
+    - png
+    - checkpoints
+    - long_logs
+
+telemetry:
+  event_log_path: logs/events.jsonl
+  persist_metrics: true
+  heartbeat_seconds: 30
+  mock_update_seconds: 2
+
+guardrails:
+  require_git_commit: true
+  require_dataset_hash: true
+  require_config_hash: true
+  require_dry_run_before_remote: true
+  require_explicit_destructive_confirmation: true
+  destructive_confirmation_phrase: CONFIRMAR EXCLUSÃO
+
+registry:
+  require_unique_run_name: true
+  compare_by_metric_set: true
+  objective_audit_required: true
+  persistent: true
+
+plugins:
+  enabled: true
+  search_paths:
+    - plugins
+
+control_plane:
+  host: 127.0.0.1
+  port: 8010
+  polling_seconds: 2
+  allow_public_bind: false

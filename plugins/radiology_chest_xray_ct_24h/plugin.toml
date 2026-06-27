@@ -1,0 +1,40 @@
+[plugin]
+name = "radiology-chest-xray-ct-24h"
+version = "0.1.0"
+description = "Plugin de referência para radiografia de tórax em leito pareada com tomografia em até 24 horas, com saída estruturada e sem geração de texto."
+
+[[capabilities]]
+kind = "dataset"
+name = "bedside-chest-xray-ct-24h"
+contract = "paired_imaging_dataset"
+description = "Pareamento CR -> CT em janela de 24 horas com split por paciente."
+
+[[capabilities]]
+kind = "task"
+name = "paired_imaging_structured_prediction"
+contract = "structured_output_no_text_generation"
+description = "Predição estruturada sem geração de texto."
+
+[[capabilities]]
+kind = "model"
+name = "structured-radiology-baseline"
+contract = "model_factory_placeholder"
+description = "Factory futura para modelos de baseline estruturado."
+
+[[capabilities]]
+kind = "metrics"
+name = "radiology-structured-metrics"
+contract = "classification_and_calibration_metrics"
+description = "AUROC, AUPRC, F1, recall, precisão e calibração."
+
+[[capabilities]]
+kind = "evaluation"
+name = "patient_level_evaluation"
+contract = "patient_level_no_leakage_evaluation"
+description = "Avaliação por paciente sem vazamento entre splits."
+
+[[capabilities]]
+kind = "exporter"
+name = "registry_artifact_exporter"
+contract = "hash_referenced_artifacts"
+description = "Exporta artefatos por URI e hash, sem payload pesado no banco."
